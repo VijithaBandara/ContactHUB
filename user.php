@@ -139,7 +139,7 @@
                                                 <td><?php echo $contactinfo['message']; ?></td>
                                                 <td>
                                                     <button type="button" value="<?=$contactinfo['id'];?>" class="editContactBtn btn btn-success">Edit</button>
-                                                    <button type="button" value="<?=$contactinfo['id'];?>" class="deleteContactBtn btn btn-success">Delete</button>
+                                                    <button type="button" value="<?=$contactinfo['id'];?>" class="deleteContactBtn btn btn-danger">Delete</button>
                                                 </td>
                                             </tr>
                                             <?php
@@ -244,6 +244,33 @@
             })
 
         });
+
+        $(document).on('click', '.deleteContactBtn', function(e) {
+            e.preventDefault();
+
+            if(confirm('Are you sure you want to delete this data?'))
+            {
+                var contact_id = $(this).val();
+                $.ajax({
+                    type: "POST",
+                    url: "code.php",
+                    data:{
+                        'delete_contact': true,
+                        'contact_id': contact_id
+                    },
+                    success: function (response) {
+                        var res = jQuery.parseJSON(response);
+                    if(res.status == 500){
+                        alert(res.message);
+                    }else{
+                        alert(res.message);
+                        $('#myTable').load(location.href + "myTable");
+                    }
+                    }
+                })
+            }
+        });
+
     </script>
   
 </body>

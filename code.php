@@ -1,6 +1,33 @@
 <?php
     require 'dbcon.php';
 
+    if(isset($_POST['delete_contact']))
+    {
+        $contact_id = mysqli_real_escape_string($con, $_POST['contact_id']);
+
+        $query = "DELETE FROM contacts WHERE id='$contact_id'";
+        $query_run = mysqli_query($con, $query);
+
+        if($query_run)
+        {
+            $res = [
+                'status' => 200,
+                'message' => 'Contact deleted successfully'
+            ];
+            echo json_encode($res);
+            return false;
+        } 
+        else
+        {
+            $res = [
+                'status' => 500,
+                'message' => 'Contact not deleted'
+            ];
+            echo json_encode($res);
+            return false;
+        }
+    }
+
     if(isset($_POST['update_contact']))
     {
         $contact_id = mysqli_real_escape_string($con, $_POST['contact_id']);
