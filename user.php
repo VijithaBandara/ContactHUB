@@ -18,8 +18,9 @@
         </div>
 
         <form id="saveContact">
-        <div class="alert alert-warning d-none" id="errorMessage"></div>
         <div class="modal-body">
+        <div class="alert alert-warning d-none" id="errorMessage"></div>
+        
             <div class="mb-3">
                 <label for="">First Name</label>
                 <input type="text" name="firstName" class="form-control" />
@@ -61,9 +62,9 @@
         </div>
 
         <form id="updateContact">
-        <div class="alert alert-warning d-none" id="errorMessage"></div>
         <div class="modal-body">
-            <input type='text' name='contact_id' id='contact_id'>
+        <div class="alert alert-warning d-none" id="errorMessageUpdate"></div>
+            <input type='hidden' name='contact_id' id='contact_id'>
             <div class="mb-3">
                 <label for="">First Name</label>
                 <input type="text" name="firstName" id="firstName" class="form-control" />
@@ -137,9 +138,8 @@
                                                 <td><?php echo $contactinfo['phone']; ?></td>
                                                 <td><?php echo $contactinfo['message']; ?></td>
                                                 <td>
-                                                    <a href="" class="btn btn-info">View</a>
                                                     <button type="button" value="<?=$contactinfo['id'];?>" class="editContactBtn btn btn-success">Edit</button>
-                                                    <a href="" class="btn btn-danger">Delete</a>
+                                                    <button type="button" value="<?=$contactinfo['id'];?>" class="deleteContactBtn btn btn-success">Delete</button>
                                                 </td>
                                             </tr>
                                             <?php
@@ -208,6 +208,37 @@
                         $('#message').val(res.data.message);
 
                         $('#contactEditModal').modal("show");
+                    }
+                }
+            })
+
+        });
+
+        $(document).on('submit', '#updateContact', function(e) {
+            e.preventDefault();
+
+            var formData = new FormData(this);
+            formData.append("update_contact",true);
+
+            $.ajax({
+                type: "POST",
+                url: "code.php",
+                data: formData,
+                processData: false,
+                contentType: false,
+
+                success: function (response){
+
+                    var res = jQuery.parseJSON(response);
+                    if(res.status == 422){
+                        $('#errorMessageUpdate').removeClass('d-none');
+                        $('#errorMessageUpdate').text(res.message);
+                    }else if(res.status == 200){
+                        $('#errorMessageUpdate').addClass('d-none');
+                        $('#contactEditModal').modal('hide');
+                        $('#updateContact')[0].reset();
+
+                        $('#myTable').load(location.href + "#myTable");
                     }
                 }
             })
