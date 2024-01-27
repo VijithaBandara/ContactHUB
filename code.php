@@ -1,5 +1,34 @@
 <?php
     require 'dbcon.php';
+
+    if(isset($_GET['contact_id']))
+    {
+        $contact_id = mysqli_real_escape_string($con, $_GET['contact_id']);
+
+        $query = "SELECT * FROM contacts WHERE id='$contact_id'";
+        $query_run = mysqli_query($con, $query);
+
+        if(mysqli_num_rows($query_run) == 1)
+        {
+            $contact = mysqli_fetch_array($query_run);
+            $res = [
+                'status' => 200,
+                'message' => 'Contact fetch successfully by ID',
+                'data' => $contact
+            ];
+            echo json_encode($res);
+            return false;
+        } else {
+            $res = [
+                'status' => 404,
+                'message' => 'Contact ID not found'
+            ];
+            echo json_encode($res);
+            return false;
+        }
+    }
+
+
     if(isset($_POST['save_contact']))
     {
         $firstName = mysqli_real_escape_string($con, $_POST['firstName']);
