@@ -5,95 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.rtl.min.css"/>
+
   </head>
   <body>
 
     <!-- Add contact -->
     <div class="modal fade" id="contactAddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Contact</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Contact</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
-        <form id="saveContact">
-        <div class="modal-body">
-        <div class="alert alert-warning d-none" id="errorMessage"></div>
-        
-            <div class="mb-3">
-                <label for="">First Name</label>
-                <input type="text" name="firstName" class="form-control" />
+            <form id="saveContact">
+            <div class="modal-body">
+            <div class="alert alert-warning d-none" id="errorMessage"></div>
+            
+                <div class="mb-3">
+                    <label for="">First Name</label>
+                    <input type="text" name="firstName" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label for="">Last Name</label>
+                    <input type="text" name="lastName" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label for="">Email</label>
+                    <input type="text" name="email" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label for="">Phone Number</label>
+                    <input type="text" name="phone" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label for="">Message</label>
+                    <input type="text" name="message" class="form-control" />
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="">Last Name</label>
-                <input type="text" name="lastName" class="form-control" />
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save Contact</button>
             </div>
-            <div class="mb-3">
-                <label for="">Email</label>
-                <input type="text" name="email" class="form-control" />
-            </div>
-            <div class="mb-3">
-                <label for="">Phone Number</label>
-                <input type="text" name="phone" class="form-control" />
-            </div>
-            <div class="mb-3">
-                <label for="">Message</label>
-                <input type="text" name="message" class="form-control" />
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save Contact</button>
-        </div>
-        </form>
+            </form>
 
+            </div>
         </div>
-    </div>
     </div>
 
     <!-- Edit contact -->
     <div class="modal fade" id="contactEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Contact</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Contact</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
-        <form id="updateContact">
-        <div class="modal-body">
-        <div class="alert alert-warning d-none" id="errorMessageUpdate"></div>
-            <input type='hidden' name='contact_id' id='contact_id'>
-            <div class="mb-3">
-                <label for="">First Name</label>
-                <input type="text" name="firstName" id="firstName" class="form-control" />
+            <form id="updateContact">
+            <div class="modal-body">
+            <div class="alert alert-warning d-none" id="errorMessageUpdate"></div>
+                <input type='hidden' name='contact_id' id='contact_id'>
+                <div class="mb-3">
+                    <label for="">First Name</label>
+                    <input type="text" name="firstName" id="firstName" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label for="">Last Name</label>
+                    <input type="text" name="lastName" id="lastName" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label for="">Email</label>
+                    <input type="text" name="email" id="email" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label for="">Phone Number</label>
+                    <input type="text" name="phone" id="phone" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label for="">Message</label>
+                    <input type="text" name="message" id="message" class="form-control" />
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="">Last Name</label>
-                <input type="text" name="lastName" id="lastName" class="form-control" />
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Update Contact</button>
             </div>
-            <div class="mb-3">
-                <label for="">Email</label>
-                <input type="text" name="email" id="email" class="form-control" />
-            </div>
-            <div class="mb-3">
-                <label for="">Phone Number</label>
-                <input type="text" name="phone" id="phone" class="form-control" />
-            </div>
-            <div class="mb-3">
-                <label for="">Message</label>
-                <input type="text" name="message" id="message" class="form-control" />
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Update Contact</button>
-        </div>
-        </form>
+            </form>
 
+            </div>
         </div>
-    </div>
     </div>
 
     <div class="container">
@@ -127,10 +129,10 @@
 
                                     if(mysqli_num_rows($query_run) > 0)
                                     {
-                                        foreach($query_run as $contactinfo)
+                                        while($contactinfo = mysqli_fetch_assoc($query_run))
                                         {
                                             ?>
-                                            <tr>
+                                            <tr id='aaa'>
                                                 <td><?php echo $contactinfo['id']; ?></td>
                                                 <td><?php echo $contactinfo['firstName']; ?></td>
                                                 <td><?php echo $contactinfo['lastName']; ?></td>
@@ -143,6 +145,7 @@
                                                 </td>
                                             </tr>
                                             <?php
+
                                         }
                                     }
                                 ?>
@@ -156,6 +159,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
     <script>
         $(document).on('submit', '#saveContact', function(e) {
@@ -182,7 +186,10 @@
                         $('#contactAddModal').modal('hide');
                         $('#saveContact')[0].reset();
 
-                        $('#myTable').load(location.href + "#myTable");
+                        alertify.set('notifier','position', 'top-right');
+                        alertify.success(res.message);
+
+                        $('#myTable').load(location.href + " #myTable");
                     }
                 }
             })
@@ -191,7 +198,6 @@
 
         $(document).on('click', '.editContactBtn', function() {
             var contact_id = $(this).val();
-            //alert(contact_id);
             $.ajax({
                 type:"GET",
                 url: "code.php?contact_id=" + contact_id,
@@ -238,7 +244,10 @@
                         $('#contactEditModal').modal('hide');
                         $('#updateContact')[0].reset();
 
-                        $('#myTable').load(location.href + "#myTable");
+                        alertify.set('notifier','position', 'top-right');
+                        alertify.success(res.message);
+
+                        $('#myTable').load(location.href + " #myTable");
                     }
                 }
             })
@@ -264,7 +273,10 @@
                         alert(res.message);
                     }else{
                         alert(res.message);
-                        $('#myTable').load(location.href + "myTable");
+                        alertify.set('notifier','position', 'top-right');
+                        alertify.success(res.message);
+                        $('#myTable').load(location.href + " #myTable");
+
                     }
                     }
                 })
