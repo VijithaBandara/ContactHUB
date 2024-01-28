@@ -50,3 +50,9 @@ ContactHub is a robust PHP-based Contact Information Management System designed 
 
    ```bash
    git clone https://github.com/VijithaBandara/ContactHUB.git
+
+Set up your database by importing the provided SQL file (contacthub.sql).
+
+Configure the database connection in dbcon.php with your credentials.
+
+Access the project through a web server or a local development environment.
