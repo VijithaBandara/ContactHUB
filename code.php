@@ -1,13 +1,27 @@
 <?php
 require 'dbcon.php';
 
+// Verify CSRF Token
+if (!isset($_POST['csrf_token'])) {
+    if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+        $res = [
+            'status' => 403,
+            'message' => 'CSRF token verification failed'
+        ];
+        echo json_encode($res);
+        exit;
+    }
+}
+
 // Function to validate email format
-function isValidEmail($email) {
+function isValidEmail($email)
+{
     return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
 
 // Function to validate phone number format (simple check for 10 digits)
-function isValidPhone($phone) {
+function isValidPhone($phone)
+{
     return preg_match('/^\d{10}$/', $phone);
 }
 
@@ -90,17 +104,17 @@ if (isset($_POST['update_contact'])) {
     }
 }
 
-if (isset($_GET['contact_id'])) {
-    $contact_id = mysqli_real_escape_string($con, $_GET['contact_id']);
+if (isset($_POST['get_contact'])) {
+    $contact_id = mysqli_real_escape_string($con, $_POST['contact_id']);
 
     $query = "SELECT * FROM contacts WHERE id='$contact_id'";
     $query_run = mysqli_query($con, $query);
 
     if (mysqli_num_rows($query_run) == 1) {
-        $contact = mysqli_fetch_array($query_run);
+        $contact = mysqli_fetch_assoc($query_run);
         $res = [
             'status' => 200,
-            'message' => 'Contact fetch successfully by ID',
+            'message' => 'Contact fetched successfully by ID',
             'data' => $contact
         ];
         echo json_encode($res);
